@@ -1,6 +1,6 @@
 name: Require ClickUp ticket
 
-# Verifies the PR references a ClickUp task that actually exists. The rule lives  in
+# Verifies the PR references a ClickUp task that actually exists. The rule lives in
 # Bananaz-ai/bananaz-common; this file only declares when to run it.
 #
 # Its own workflow file on purpose: the trigger set below fires on every title/body
