@@ -1,0 +1,22 @@
+name: Require ClickUp ticket
+
+# Verifies the PR references a ClickUp task that actually exists. The rule lives in
+# Bananaz-ai/common; this file only declares when to run it.
+#
+# Its own workflow file on purpose: the trigger set below fires on every title/body
+# edit and label change, so folding it into a build/test workflow would re-run that
+# whole matrix each time. For the same reason, don't add it to an aggregate
+# "ci-success"-style job's `needs`.
+on:
+  pull_request:
+    branches: [master]
+    # edited      -> someone pastes the ticket link; without it the check stays red forever
+    # labeled     -> the `no-ticket` escape hatch is a label, which fires nothing else
+    # synchronize -> required checks resolve per head SHA, so every push needs a fresh run
+    types: [opened, edited, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+  ticket:
+    uses: Bananaz-ai/common/.github/workflows/require-clickup-ticket.yml@v1
+    secrets:
+      CLICKUP_TOKEN: ${{ secrets.CLICKUP_TOKEN }}
