@@ -1,7 +1,7 @@
 name: Require ClickUp ticket
 
-# Verifies the PR references a ClickUp task that actually exists. The rule lives in
-# Bananaz-ai/common; this file only declares when to run it.
+# Verifies the PR references a ClickUp task that actually exists. The rule lives  in
+# Bananaz-ai/bananaz-common; this file only declares when to run it.
 #
 # Its own workflow file on purpose: the trigger set below fires on every title/body
 # edit and label change, so folding it into a build/test workflow would re-run that
@@ -17,6 +17,6 @@ on:
 
 jobs:
   ticket:
-    uses: Bananaz-ai/common/.github/workflows/require-clickup-ticket.yml@v1
+    uses: Bananaz-ai/bananaz-common/.github/workflows/require-clickup-ticket.yml@v1
     secrets:
       CLICKUP_TOKEN: ${{ secrets.CLICKUP_TOKEN }}
